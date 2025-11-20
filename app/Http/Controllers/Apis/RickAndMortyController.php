@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Apis;
 use App\Contracts\IRickAndMortyService;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class RickAndMortyController extends Controller
 {
@@ -15,21 +16,17 @@ class RickAndMortyController extends Controller
         $this->rickAndMortyService = $rickAndMortyService;
     }
 
-    public function characters(int $page = 1): JsonResponse
+    public function characters(Request $request): JsonResponse
     {
-        $data = $this->rickAndMortyService->getAllCharacters($page);
-
+        $filters = $request->only(['name', 'status', 'species', 'type', 'gender']);
+        $page = $request->get('page', 1);
+        $data = $this->rickAndMortyService->getAllCharacters($filters ,$page);
         return response()->json($data);
     }
 
     public function character(int $id): JsonResponse
     {
         $char = $this->rickAndMortyService->getCharacter($id);
-
-        if (!$char) {
-            return response()->json(['message' => 'Character not found'], 404);
-        }
-
         return response()->json($char);
     }
 

@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -15,5 +16,28 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+         $exceptions->render(function (Throwable $exception, Request $request) {
+            if ($request->is('api/*')) {
+
+                // Manejar RickAndMortyApiException
+                if ($exception instanceof \App\Exceptions\RickAndMortyApiException) {
+
+                    // Mapping de código lógico a HTTP real
+                    $status = match ($exception->getCode()) {
+                        \App\Exceptions\RickAndMortyApiException::NOT_FOUND => 404,
+                        default => 400,
+                    };
+
+                    return response()->json([
+                        'message' => $exception->getMessage(),
+                    ], $status);
+                }
+                return response()->json([
+                    'message' => 'Error interno del Api',
+                    'error' => config('app.debug') ?
+                        $exception->getMessage() :
+                        'Ocurrió un error inesperado',
+                ], 500);
+            }
+        });
     })->create();

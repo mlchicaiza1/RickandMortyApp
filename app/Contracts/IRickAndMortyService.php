@@ -11,7 +11,7 @@ use App\Dtos\RickAndMorty\LocationDto;
  */
 interface IRickAndMortyService
 {
-    public function getAllCharacters(int $page = 1): array;
+    public function getAllCharacters(array $filters = [],int $page = 1): array;
     public function getCharacter(int $id): ?CharacterDto;
 
     public function getAllLocations(int $page = 1): array;
