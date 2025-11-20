@@ -14,11 +14,11 @@ interface IRickAndMortyService
     public function getAllCharacters(array $filters = [],int $page = 1): array;
     public function getCharacter(int $id): ?CharacterDto;
 
-    public function getAllLocations(int $page = 1): array;
+    public function getAllLocations(array $filters = [],int $page = 1): array;
 
     public function getLocation(int $id): ?LocationDto;
 
-    public function getAllEpisodes(int $page = 1): array;
+    public function getAllEpisodes(array $filters = [],int $page = 1): array;
 
     public function getEpisode(int $id): ?EpisodeDto;
 }

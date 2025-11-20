@@ -30,9 +30,11 @@ class RickAndMortyController extends Controller
         return response()->json($char);
     }
 
-    public function episodes(int $page = 1): JsonResponse
+    public function episodes(Request $request): JsonResponse
     {
-        $data = $this->rickAndMortyService->getAllEpisodes($page);
+        $filters = $request->only(['name', 'episode']);
+        $page = $request->get('page', 1);
+        $data = $this->rickAndMortyService->getAllEpisodes($filters,$page);
         return response()->json($data);
     }
 
@@ -45,9 +47,11 @@ class RickAndMortyController extends Controller
         return response()->json($ep);
     }
 
-    public function locations(int $page = 1): JsonResponse
+    public function locations(Request $request): JsonResponse
     {
-        $data = $this->rickAndMortyService->getAllLocations($page);
+        $filters = $request->only(['name', 'type', 'dimension']);
+        $page = $request->get('page', 1);
+        $data = $this->rickAndMortyService->getAllLocations($filters,$page);
         return response()->json($data);
     }
 

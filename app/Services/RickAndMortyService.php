@@ -56,9 +56,10 @@ class RickAndMortyService implements IRickAndMortyService
         return CharacterDto::from($json);
     }
 
-    public function getAllLocations(int $page = 1): array
+    public function getAllLocations(array $filters = [],int $page = 1): array
     {
-        $json = $this->request("/location", ['page' => $page]);
+        $query = array_merge($filters, ['page' => $page]);
+        $json = $this->request("/location", $query);
 
         return [
             'info' => InfoDto::from($json['info'] ?? null),
@@ -72,9 +73,10 @@ class RickAndMortyService implements IRickAndMortyService
         return LocationDto::from($json);
     }
 
-    public function getAllEpisodes(int $page = 1): array
+    public function getAllEpisodes(array $filters = [],int $page = 1): array
     {
-        $json = $this->request("/episode", ['page' => $page]);
+        $query = array_merge($filters, ['page' => $page]);
+        $json = $this->request("/episode", $query);
 
         return [
             'info' => InfoDto::from($json['info'] ?? null),
