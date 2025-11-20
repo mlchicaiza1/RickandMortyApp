@@ -9,7 +9,7 @@ Existe dos Ramas
 
 Api
 
--   Servicio que consume la API: [`App\Services\RickAndMortyService`](app/Services/RickAndMortyService.php) — [app/Services/RickAndMortyService.php](app/Services/RickAndMortyService.php)
+-   Servicio que consume la API: [`App\Services\RickAndMortyService`](app/Services/RickAndMortyService.php)
 -   Controladores API: [`App\Http\Controllers\Apis\RickAndMortyController`](app/Http/Controllers/Apis/RickAndMortyController.php) — [routes/api.php](routes/api.php)
 -   DTOs usados: [`App\Dtos\RickAndMorty\CharacterDto`](app/Dtos/RickAndMorty/CharacterDto.php), [`App\Dtos\RickAndMorty\LocationDto`](app/Dtos/RickAndMorty/LocationDto.php) — [app/Dtos/RickAndMorty](app/Dtos/RickAndMorty/)
 -   Binding de la interfaz: [`App\Contracts\IRickAndMortyService`](app/Contracts/IRickAndMortyService.php) — [app/Providers/AppServiceProvider.php](app/Providers/AppServiceProvider.php)
