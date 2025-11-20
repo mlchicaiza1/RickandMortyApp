@@ -1,6 +1,6 @@
 # API Rick and Morty — Laravel + Vue + Inertia
 
-Proyecto ejemplo que consume la API pública de Rick and Morty y expone vistas web con Inertia + Vue. Está organizado como una aplicación Laravel con un pequeño frontend en Vue.
+Proyecto que consume la API pública de Rick and Morty y expone vistas web con Inertia + Vue. Está organizado como una aplicación Laravel con un pequeño frontend en Vue.
 
 Existe dos Ramas
 
